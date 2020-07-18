@@ -41,7 +41,10 @@ bool getNextFloat(float *fPtr)
 void printNumberData(float f)
 {
 	// replace this call to printf with your actual code
-	printf("%f\n", f);
+	printf("       %d", (int)f);
+	printf(" 0x%08X\n", (int)f);
+	printf("    %.2f", f);
+	printf(" 0x%08X\n", *(unsigned int*)&f);
 }
 
 // do not change this function in any way
