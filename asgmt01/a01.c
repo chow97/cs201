@@ -33,6 +33,11 @@ void bigOrSmallEndian()
 bool getNextFloat(float *fPtr)
 {
     // replace this code with the call to scanf()
+	float f;
+	while(f != 0)
+	{
+		scanf("%f", &f);
+	}
     *fPtr = 0.0;
     return true;
 }
