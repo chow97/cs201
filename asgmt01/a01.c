@@ -9,11 +9,22 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-static char *studentName = "I. Forgot";
+static char *studentName = "Chow";
 
 // report whether machine is big or small endian
 void bigOrSmallEndian()
 {
+	unsigned int x = 0x76543210;
+	char *p = (char*) &x;
+
+	if(*p == 0x10)
+	{
+		printf("Byte order: Little-Endian. \n");
+	}
+	else
+	{
+		printf("Byte order: Big-Endian");
+	}
 }
 
 // get next float using scanf()
