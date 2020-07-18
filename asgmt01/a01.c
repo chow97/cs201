@@ -19,11 +19,11 @@ void bigOrSmallEndian()
 
 	if(*p == 0x10)
 	{
-		printf("Byte order: Little-Endian. \n");
+		printf("byte order: little-endian. \n");
 	}
 	else
 	{
-		printf("Byte order: Big-Endian");
+		printf("byte order: big-endian");
 	}
 }
 
