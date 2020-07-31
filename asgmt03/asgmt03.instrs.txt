@@ -1,0 +1,139 @@
+CS201 ASSIGNMENT 3 INSTRUCTIONS
+-------------------------------
+
+Write code that forks into two processes: a parent process, and a child process.
+
+--------------------------------------------------------------------------------
+
+REGULAR VERSION
+
+Your code will be called with command-line arguments consisting of positive
+floating point numbers. Do not worry about bad command-line arguments such as
+"xyz". Your code will not be tested in this way.
+
+The parent process will take the arguments to main(), convert them into 8-byte
+doubles by calling atof(), and send those double values one at a time to the
+child process through a pipe (one call to write() for each double).
+
+Do not send anything from argv[0] through the pipe. Start with argv[1] and
+continue through the rest of the arguments.
+
+The child process will read the doubles sent by the parent process one at a
+time and add them up, producing a sum of type double. The child process should
+not use the arguments to main(), argc and argv, in any way whatsoever (doing so
+will result in a significant loss of points). The child process will convert the
+sum of the numbers to an int and communicate it to the parent as the return
+value from main().
+
+The parent process will need to reap the child process to get the integer sum
+value that was returned by the child.
+
+It may be of use to know that read() will return immediately with a zero once
+the other end of the pipe is closed by the parent.
+
+If I call your code this way:
+
+    a03 3.2 5.3 7.8
+
+The sum returned by the child will be 16 because the sum of the three numbers
+is 16.3, which gets truncated to 16 when it is converted to an int.
+
+The parent process should print out:
+
+    CS201 - Assignment 3 Regular - I. Forgot
+    sum = 16
+
+The sums produced from the test input I use will be in the range [0 .. 255].
+
+Your code must be able to handle any number of command line arguments.
+
+Important: printing should be done only by the parent process. The child process
+should not print anything.
+
+Your output should be formatted as shown (small differences in whitespace are
+OK). Remember to replace "I. Forgot" with your own name.
+
+Start with the provided code file a03.c. Upload your code as a03.c.
+
+--------------------------------------------------------------------------------
+
+PREMIUM VERSION
+
+You should start by doing the Regular version. You will need to add two sections
+of GNU Assembly Language (GAS).
+
+The first section of GAS, at the beginning of the child code, will set the
+two-bit Rounding Control (RC) field of the FPU Control Word to 10, which
+specifies round towards +infinity. (In Volume 1 of the Intel PDFs, see sections
+8.1.4 and 4.8.4.)
+
+Your code should change only those two bits of the FPU Control Word, leaving
+the other bits unchanged.
+
+The second section of GAS, at the end of the child code will use the frndint
+instruction to round the sum of the doubles to an integer value according to the
+Rounding Control setting in the FPU Control Word. The result will be a double
+containing an integer value. You can then return this value from main by
+converting it to an int.
+
+If I call your code this way:
+
+    a03 3.2 5.3 7.8
+
+The parent process should print out:
+
+    CS201 - Assignment 3 Premium - I. Forgot
+    sum = 17
+
+The sums produced from the test input I use will be in the range [0 .. 255].
+
+Start with the provided code file a03p.c. Upload your code as a03p.c.
+
+--------------------------------------------------------------------------------
+
+REQUIRED PLATFORM
+
+I grade your code on syccuxas01.pcc.edu. Your code is required to compile and
+run correctly on that machine.
+
+COMPILING YOUR CODE
+
+You are required to compile your code with the same flags that are used by
+the 'gc' bash script in ~michael.trigoboff/bin.
+
+GRADING YOUR CODE
+
+Your code needs to compile without errors or warnings and run correctly. Code
+that does not compile will receive zero points. Code that crashes will receive
+zero points.
+
+I use bash scripts to grade your code. Because of this, it is very important
+that you submit your code with the file name that was requested. If you change
+the file name, my scripts will crash, your work will not be graded, you will
+have to resubmit a corrected version of your work, and you will lose points.
+
+My scripts produce a log file containing your code, compiler warnings and errors
+(if any), your code's output, and some statistics that are useful to me. I then
+personally go through that log file to produce your grade. In other words, the
+scripts don't generate your grade, they just make it more convenient for me to
+generate your grade.
+
+TO SUBMIT THIS ASSIGNMENT
+
+Submit the requested file to Desire2Learn.
+
+    * Be certain to check that you completed the upload successfully. After you
+        click the Upload File button, you must also click the SUBMIT ASSIGNMENT
+        button. This is very easy to forget. If you do not do this, I will not
+        see your work and you will get a grade of zero for the assignment. I
+        would recommend entering an email address so you can be notified that
+        the upload was completed successfully.
+    * You may upload as many versions as you wish prior to the due date. I will
+        only see and grade the final one. You will not be able to upload
+        assignments after the due date.
+
+Points will be deducted for uploading a file with a name that is not as
+specified. Every term I get a few students whose approach to following
+directions is, shall we say, "creative." I encourage creativity in general, but
+there are places where it is not appropriate.
+
