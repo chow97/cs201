@@ -1,0 +1,18 @@
+# ignore all files
+*
+
+# unignore all dirs
+!*/
+
+asgmt0?/asgmt0?.instrs.txt
+
+# unignore C source files
+!*.h
+!*.c
+
+# unignore miscellaneous
+!*.sh
+!*.src
+
+# unignore .gitignore
+!.gitignore
