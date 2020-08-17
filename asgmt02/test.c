@@ -1,11 +1,7 @@
 #include<stdio.h>
-
 #include<stdlib.h>
-
 #include<math.h>
-
 #include<string.h>
-
 #define SEED 35791246
 
 int main(int argc,char* argv[])
