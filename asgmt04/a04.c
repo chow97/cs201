@@ -14,20 +14,21 @@ int main(void)
 	int		i;
 
 	// You can add variables between this comment ...
-
+	double *ptr;
+	double sum1 = 0;
 	// ... and this one.
 
 	// Please change 'your name' to your actual name.
-	printf("CS201 - Asgmt 4 - I. Forgot\n");
+	printf("CS201 - Asgmt 4 - Ka Hoo Chow\n");
 
 	for (i = 0; i < N_TIMES; i++) {
 
 		// You can change anything between this comment ...
 
-		int     j;
 
-		for (j = 0; j < ARRAY_SIZE; j++) {
-			sum += array[j];
+		for (ptr = array; ptr < &array[ARRAY_SIZE]; ptr += 8) {
+			sum += *ptr + *(ptr + 1) + *(ptr + 2) + *(ptr + 3);
+			sum1 += *(ptr + 4) + *(ptr + 5) + *(ptr + 6) + *(ptr + 7);
 			}
 
 		// ... and this one. But your inner loop must do the same
@@ -36,7 +37,8 @@ int main(void)
 		}
 
 	// You can add some final code between this comment ...
-
+	sum += sum1;
+	printf("sum = %f \n", sum);
 	// ... and this one.
 
 	return 0;
