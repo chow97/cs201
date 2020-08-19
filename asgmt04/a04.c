@@ -38,7 +38,6 @@ int main(void)
 
 	// You can add some final code between this comment ...
 	sum += sum1;
-	printf("sum = %f \n", sum);
 	// ... and this one.
 
 	return 0;
